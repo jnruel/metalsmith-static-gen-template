@@ -4,6 +4,9 @@ var layouts     = require('metalsmith-layouts');
 var permalinks  = require('metalsmith-permalinks');
 var collections = require('metalsmith-collections');
 var sass 		= require('metalsmith-sass');
+var serve 		= require('metalsmith-serve');
+var watch		= require('metalsmith-watch');
+
 
 
 Metalsmith(__dirname)
@@ -43,6 +46,17 @@ Metalsmith(__dirname)
 		outputDir: 'css/',
 		sourceMap:true,
 		sourceMapContents:true
+	}))
+	.use(serve({
+		port: 8080,
+		verbose: true
+	}))
+	.use(watch({
+		paths: {
+			"${source}/**/*": true,
+			"templates/**/*": "**/*.html",
+		},
+		livereload: true,
 	}))
     .build(function(err, files) {
 		if (err) { throw err; }
