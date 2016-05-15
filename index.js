@@ -6,7 +6,7 @@ var collections = require('metalsmith-collections');
 var sass 		= require('metalsmith-sass');
 
 
-var build = Metalsmith(__dirname)
+Metalsmith(__dirname)
     .metadata({
 		// title: "Process Documentation",
 		// description: "A collection of process documentation",
@@ -14,9 +14,9 @@ var build = Metalsmith(__dirname)
     .source('./src')
     .destination('./build')
     .clean(true)
-	.use(markdown())
+	.use(markdown())	// converts md to html
 	.use(collections({
-		core:{
+		corePages:{
 			pattern: '*.html'
 		},
 		projects: {
@@ -24,14 +24,14 @@ var build = Metalsmith(__dirname)
 		}
 	}))
     .use(permalinks({
-		pattern: ':title',
+		pattern: ':title/',
 		linksets:[{
-			match: {collection: 'core'},
-			pattern: ':title'
+			match: {collection: 'corePages'},
+			pattern: ':title/'
 		}],
 		linksets:[{
 			match: {collection: 'project'},
-			pattern: 'projects/:title'
+			pattern: 'projects/:title/'
 		}]
 	}))
     .use(layouts({
