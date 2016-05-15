@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+{{>head}}
+<body>
+	{{>header-nav}}
+	<h1>{{ title }}</h1>
+	<p>{{ description }}</p>
+
+	<ul>
+		{{#each collections.projects}}
+		<li><h3><a href="{{this.path}}">{{this.title}}</a></h3></li>
+		{{/each}}
+	</ul>
+
+	{{{ contents }}}
+
+	{{>footer}}
+</body>
+</html>
