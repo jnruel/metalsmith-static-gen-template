@@ -9,10 +9,11 @@ var watch		= require('metalsmith-watch');
 
 
 
+
 Metalsmith(__dirname)
     .metadata({
-		// title: "Process Documentation",
-		// description: "A collection of process documentation",
+		site_title: "Template",
+		site_description: "This is a template site made with Metalsmith",
     })
     .source('./src')
     .destination('./build')
