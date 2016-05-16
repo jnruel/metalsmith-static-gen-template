@@ -18,6 +18,11 @@ Metalsmith(__dirname)
     .source('./src')
     .destination('./build')
     .clean(true)
+	.use(sass({
+		outputDir: 'css/',
+		sourceMap:true,
+		sourceMapContents:true
+	}))
 	.use(markdown())	// converts md to html
 	.use(collections({
 		corePages:{
@@ -43,11 +48,6 @@ Metalsmith(__dirname)
 		directory: 'templates/layouts',
 		partials: 'templates/partials'
     }))
-	.use(sass({
-		outputDir: 'css/',
-		sourceMap:true,
-		sourceMapContents:true
-	}))
 	.use(serve({
 		port: 8080,
 		verbose: true
